@@ -3,15 +3,16 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node --env-file=.env server.js",
-    "dev": "node --watch --env-file=.env server.js",
-    "test": "vitest",
-    "test:database": "vitest database",
-    "test:server": "vitest server",
-    "db:schema": "psql -d fullstack_employees -f ./db/schema.sql",
-    "db:seed": "node --env-file=.env db/seed.js",
-    "db:reset": "npm run db:schema && npm run db:seed"
-  },
+  "start": "node --env-file=.env server.js",
+  "dev": "node --watch --env-file=.env server.js",
+  "test": "vitest run",
+  "test:database": "vitest run __tests__/database.test.js",
+  "test:server": "vitest run __tests__/server.api.test.js",
+  "db:schema": "psql -d fullstack_employees -f ./db/schema.sql",
+  "db:seed": "node --env-file=.env db/seed.js",
+  "db:reset": "npm run db:schema && npm run db:seed"
+}
+,
   "imports": {
     "#*": "./*.js"
   },

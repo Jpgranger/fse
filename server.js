@@ -1,10 +1,18 @@
-import app from "#app";
-import db from "#db/client";
+import app from './app.js';
+import db from './db/client.js';
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT || 8080;
 
-await db.connect();
+const startServer = async () => {
+  try {
+    await db.connect();
+    app.listen(PORT, () => {
+      console.log(`🚀 Server listening at http://localhost:${PORT}`);
+    });
+  } catch (err) {
+    console.error('Failed to start server:', err);
+    process.exit(1);
+  }
+};
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`);
-});
+startServer();
